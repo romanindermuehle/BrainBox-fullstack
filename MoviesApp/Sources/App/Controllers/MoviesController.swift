@@ -91,11 +91,12 @@ class MoviesController: RouteCollection {
     }
     
     
-    func create(req: Request) async throws -> Movie {
+    func create(req: Request) async throws -> MovieDTO {
         
-        let movie = try req.content.decode(Movie.self)
+        let movieData = try req.content.decode(MovieDTO.self)
+        let movie = Movie(title: movieData.title, year: movieData.year, peopleID: movieData.people)
         try await movie.save(on: req.db)
-        return movie
+        return movieData
         
     }
     
