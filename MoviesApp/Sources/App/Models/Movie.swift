@@ -22,12 +22,16 @@ final class Movie: Model, Content {
     @Field(key: "year")
     var year: Int
     
+    @Parent(key: "people_id")
+    var people: People
+    
     
     init() {}
     
-    init(id: UUID? = nil, title: String, year: Int) {
+    init(id: UUID? = nil, title: String, year: Int, peopleID: People.IDValue) {
         self.id = id
         self.title = title
         self.year = year
+        self.$people.id = peopleID
     }
 }
