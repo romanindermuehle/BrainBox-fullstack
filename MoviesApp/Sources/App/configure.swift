@@ -15,6 +15,8 @@ public func configure(_ app: Application) async throws {
     //register controllers
     try app.register(collection: MoviesController())
     
+    try app.register(collection: PeopleController())
+    
     // register routes
     try routes(app)
 }
