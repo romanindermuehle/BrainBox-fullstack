@@ -20,18 +20,22 @@ final class Movie: Model, Content {
     var title: String
     
     @Field(key: "year")
-    var year: Int
+    var release_year: Int?
     
-    @Parent(key: "people_id")
-    var people: People
+    @Field(key: "genre")
+    var genre: [String]?
+    
+    @Field(key: "director")
+    var director: Director.IDValue?
     
     
     init() {}
     
-    init(id: UUID? = nil, title: String, year: Int, peopleID: People.IDValue) {
+    init(id: UUID? = nil, title: String, release_year: Int?, genre: [String]?, director: Director.IDValue?) {
         self.id = id
         self.title = title
-        self.year = year
-        self.$people.id = peopleID
+        self.release_year = release_year
+        self.genre = genre
+        self.director = director
     }
 }

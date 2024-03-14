@@ -49,7 +49,9 @@ class MoviesController: RouteCollection {
         let updateMovie = try req.content.decode(Movie.self)
         
         movie.title = updateMovie.title
-        movie.year = updateMovie.year
+        movie.release_year = updateMovie.release_year
+        movie.genre = updateMovie.genre
+        movie.director = updateMovie.director
         
         try await movie.update(on: req.db)
         return movie
@@ -91,12 +93,11 @@ class MoviesController: RouteCollection {
     }
     
     
-    func create(req: Request) async throws -> MovieDTO {
+    func create(req: Request) async throws -> Movie {
         
-        let movieData = try req.content.decode(MovieDTO.self)
-        let movie = Movie(title: movieData.title, year: movieData.year, peopleID: movieData.people)
+        let movie = try req.content.decode(Movie.self)
         try await movie.save(on: req.db)
-        return movieData
+        return movie
         
     }
     
