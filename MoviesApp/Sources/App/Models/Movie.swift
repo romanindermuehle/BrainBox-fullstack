@@ -19,8 +19,11 @@ final class Movie: Model, Content {
     @Field(key: "title")
     var title: String
     
-    @Field(key: "year")
+    @Field(key: "release_year")
     var release_year: Int?
+    
+    @Field(key: "production_costs")
+    var production_costs: String?
     
     @Field(key: "genre")
     var genre: [String]?
@@ -31,10 +34,11 @@ final class Movie: Model, Content {
     
     init() {}
     
-    init(id: UUID? = nil, title: String, release_year: Int?, genre: [String]?, director: Director.IDValue?) {
+    init(id: UUID? = nil, title: String, release_year: Int?, production_costs: String?, genre: [String]?, director: Director.IDValue?) {
         self.id = id
         self.title = title
         self.release_year = release_year
+        self.production_costs = production_costs
         self.genre = genre
         self.director = director
     }
