@@ -1,0 +1,9 @@
+{
+  "/api/movies": {
+    "target": "https://brainbox.labcraftapi.online",
+    "secure": true,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}
+
