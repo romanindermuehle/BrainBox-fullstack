@@ -1,20 +1,21 @@
 import { Injectable } from '@angular/core';
 import { Movie } from './movie';
+import { HttpClient } from '@angular/common/http';
+import { Observable, take } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MovieService {
 
-  movies: Movie[] = []
-  url: string = "https://brainbox.labcraftapi.online/api/movies"
-  constructor() { }
+  url: string = "/api/movies"
+  constructor(private http: HttpClient) { }
 
-  async logMovies(): Promise<JSON> {
-    const response = await fetch("/api/movies");
-    const movies = await response.json();
-    return (movies);
+  getMovies(): Observable<Movie[]> {
+    return this.http.get<Movie[]>(this.url);
   }
+
+ 
   
 }
 
