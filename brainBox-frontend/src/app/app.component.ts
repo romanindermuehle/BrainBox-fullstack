@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { MovieService } from './movie.service';
+import { Movie } from './movie';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -12,8 +14,20 @@ import { MovieService } from './movie.service';
 export class AppComponent {
   title = 'brainBox-frontend';
 
+  movies: Movie[] = []
+
   constructor(private service: MovieService) {}
 
-  movies = this.service.logMovies();
+  fetchMovies() {
+    this.service.getMovies()
+      .pipe(take(1))
+      .subscribe(
+        (movies) => {
+        this.movies = movies;
+        console.log(movies);
+      }
+      );
+  }
+  
 
 }
