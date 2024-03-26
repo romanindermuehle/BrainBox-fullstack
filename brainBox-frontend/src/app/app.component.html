@@ -1,4 +1,8 @@
 <h1>BrainBox</h1>
 
+@for (movie of movies; track $index) {
+  <p>{{movie.title}}</p>
+  <p>{{movie.release_year}}</p>
+}
 
-<Button (click)="movies">fetch Movie</Button>
+<Button (click)="fetchMovies()">fetch Movie</Button>
